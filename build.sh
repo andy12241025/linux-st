@@ -66,6 +66,11 @@ if [ "${DO_CLEANUP}" = 1 ]; then
 fi
 
 if [ "${DO_CONFIG}" = 1 ]; then
+	DEFCONFIG="${ROOT}/linux-5.4.31/arch/arm/configs/stm32mp1_andy_defconfig"
+	if [ ! -f "${DEFCONFIG}" ]; then
+		echo "==> stm32mp1_andy_defconfig missing; generating it"
+		"${ROOT}/gen_defconfig.sh"
+	fi
 	echo "==> stm32mp1_andy_defconfig"
 	make stm32mp1_andy_defconfig
 	make olddefconfig
