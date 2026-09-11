@@ -6,7 +6,7 @@ usage() {
 Usage: make.sh [-r] [-c] [-m] [-b]
 
   -r   cleanup only (make distclean)
-  -c   configure only (stm32_andy_defconfig + olddefconfig)
+  -c   configure only (stm32_andy_defconfig + olddefconfig, covering initial config)
   -m   run menuconfig (after configure if -c is also set)
   -s   save defconfig to stm32_andy_defconfig (after menuconfig if -m is also set)
   -b   build only (uImage + dtbs)
