@@ -808,10 +808,11 @@ EXPORT_SYMBOL_GPL(dma_request_chan);
 struct dma_chan *dma_request_chan_linked(struct device *dev, const char *name)
 {
 	struct dma_chan *ch = dma_request_chan(dev, name);
-	struct device *provider_dev = ch->device->dev;
+	struct device *provider_dev;
 	struct device_link *link;
 
 	if (!IS_ERR_OR_NULL(ch)) {
+		provider_dev = ch->device->dev;
 		link = device_link_add(dev, provider_dev, DL_FLAG_STATELESS);
 		if (!link) {
 			dev_err(provider_dev,
@@ -1484,5 +1485,4 @@ static int __init dma_bus_init(void)
 	return err;
 }
 arch_initcall(dma_bus_init);
-
 
