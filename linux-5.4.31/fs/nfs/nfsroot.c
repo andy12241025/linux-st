@@ -87,8 +87,13 @@
 /* Default path we try to mount. "%s" gets replaced by our IP address */
 #define NFS_ROOT		"/tftpboot/%s"
 
-/* Default NFSROOT mount options. */
-#define NFS_DEF_OPTIONS		"vers=2,udp,rsize=4096,wsize=4096"
+/*
+ * Do not preselect an NFS version or transport here.  Command-line
+ * nfsroot options are appended to this string, so the historical
+ * "vers=2,udp" defaults conflict with an explicit "vers=3,proto=tcp"
+ * and cause the mount-option parser to reject the request.
+ */
+#define NFS_DEF_OPTIONS		""
 
 /* Parameters passed from the kernel command line */
 static char nfs_root_parms[NFS_MAXPATHLEN + 1] __initdata = "";

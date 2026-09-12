@@ -488,6 +488,8 @@ static int __init mount_nfs_root(void)
 					root_mountflags, root_data);
 		if (err == 0)
 			return 1;
+		pr_err("Root-NFS: mount attempt %d of %d failed: device=%s options=%s error=%d\n",
+		       try, NFSROOT_RETRY_MAX + 1, root_dev, root_data, err);
 		if (try > NFSROOT_RETRY_MAX)
 			break;
 
