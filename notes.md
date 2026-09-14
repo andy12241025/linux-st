@@ -21,9 +21,9 @@ bootcmd=dhcp;tftp c2000000 uImage;tftp c4000000 stm32mp157d-andy.dtb;bootm c2000
 ```
 # make boot ext4 
 ```sh
-  dd if=/dev/zero of=bootfs.ext4 bs=1M count=64
-  mkfs.ext4 -L bootfs bootfs.ext4
-  sudo mount -o loop bootfs.ext4 /mnt/bootfs
+  dd if=/dev/zero of=~/tmp/bootfs.ext4 bs=1M count=16
+  mkfs.ext4 -L bootfs ~/tmp/bootfs.ext4
+  sudo mount -o loop ~/tmp/bootfs.ext4 /mnt/bootfs
   sudo cp /srv/tftp/uImage /srv/tftp/stm32mp157d-andy.dtb /mnt/bootfs/
   sync && sudo umount /mnt/bootfs
 ```
