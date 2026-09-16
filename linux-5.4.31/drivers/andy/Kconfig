@@ -1,0 +1,14 @@
+menu "Andy's drivers"
+
+config ANDY_LED
+	tristate "Andy LED driver (STM32MP157)"
+	depends on OF && ARCH_STM32
+	help
+	  Character driver for the user LED on the STM32MP157 board,
+	  driven by writing 1/0 to /dev/andyled. Register addresses come
+	  from the "reg" property of the /andy_led device tree node.
+
+	  To compile this driver as a module, choose M here: the module
+	  will be called andyled.
+
+endmenu

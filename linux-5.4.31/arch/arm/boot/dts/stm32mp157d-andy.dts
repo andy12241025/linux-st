@@ -29,12 +29,20 @@
 		gpu_reserved: gpu@f6000000 {
 			reg = <0xf6000000 0x8000000>;
 			no-map;
+			status = "disabled";
 		};
-
-		optee_memory: optee@fe000000 {
-			reg = <0xfe000000 0x02000000>;
-			no-map;
-		};
+	};
+	
+	andy_led {
+		compatible = "andy-leds";
+		status = "okay";
+		reg = <0x50000A28 0x04 /* RCC_MP_AHB4ENSETR*/
+			0x5000A000 0x04 /* GPIOI_MODER*/
+			0x5000A004 0x04 /* GPIOI_OTYPER*/
+			0x5000A008 0x04 /* GPIOI_OSPEEDR*/
+			0x5000A00C 0x04 /* GPIOI_PUPDR*/
+			0x5000A018 0x04 /* GPIOI_BSRR*/
+		>;
 	};
 };
 
@@ -44,9 +52,5 @@
 
 &gpu {
 	contiguous-area = <&gpu_reserved>;
-	status = "okay";
-};
-
-&optee {
-	status = "okay";
+	status = "disabled";
 };
