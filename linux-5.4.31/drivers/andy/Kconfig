@@ -11,4 +11,15 @@ config ANDY_LED
 	  To compile this driver as a module, choose M here: the module
 	  will be called andyled.
 
+config ANDY_BEEP
+	tristate "Andy beep driver (STM32MP157)"
+	depends on OF && GPIOLIB
+	help
+	  Character driver for the on-board buzzer of the STM32MP157 board,
+	  driven by writing 1/0 to /dev/andybeep. The GPIO comes from the
+	  "beep-gpio" property of the /andybeep device tree node.
+
+	  To compile this driver as a module, choose M here: the module
+	  will be called andybeep.
+
 endmenu

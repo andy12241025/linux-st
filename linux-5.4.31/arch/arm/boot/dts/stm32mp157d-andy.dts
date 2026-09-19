@@ -44,6 +44,18 @@
 			0x5000A018 0x04 /* GPIOI_BSRR*/
 		>;
 	};
+	
+	andybeep {
+		compatible = "andy,beep";
+		status = "okay";
+		/*
+		 * BEEP is driven by PC7 through a 1K base resistor into the
+		 * S8550 PNP transistor Q1 (base pulled to VCC3.3 by R108).
+		 * Pulling PC7 low turns Q1 on and sounds the buzzer, so the
+		 * GPIO is active low.
+		 */
+		beep-gpio = <&gpioc 7 GPIO_ACTIVE_LOW>;
+	};
 };
 
 &cpu1{
