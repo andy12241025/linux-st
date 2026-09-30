@@ -22,4 +22,17 @@ config ANDY_BEEP
 	  To compile this driver as a module, choose M here: the module
 	  will be called andybeep.
 
+config ANDY_KEYBEEP
+	tristate "Andy KEY1 beep driver (STM32MP157)"
+	depends on OF && GPIOLIB
+	help
+	  Platform driver that sounds the on-board buzzer while KEY1 is
+	  held down. The key and buzzer GPIOs come from the "key-gpios" and
+	  "beep-gpios" properties of an "andy,key-beep" device tree node.
+	  It claims the buzzer GPIO, so do not load it together with
+	  andybeep.
+
+	  To compile this driver as a module, choose M here: the module
+	  will be called andykeybeep.
+
 endmenu

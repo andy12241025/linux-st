@@ -56,6 +56,20 @@
 		 */
 		beep-gpio = <&gpioc 7 GPIO_ACTIVE_LOW>;
 	};
+
+	andykeybeep {
+		compatible = "andy,key-beep";
+		status = "okay";
+		/*
+		 * KEY1 shorts PH7 to GND when pressed; its external pull-up
+		 * R15 is not fitted, so the driver enables the internal one.
+		 * The buzzer (PC7) sounds while KEY1 is held. It shares PC7
+		 * with /andybeep, so only load one of the two drivers.
+		 */
+		key-gpios = <&gpioh 7 GPIO_ACTIVE_LOW>;
+		beep-gpios = <&gpioc 7 GPIO_ACTIVE_LOW>;
+		debounce-interval = <10>;
+	};
 };
 
 &cpu1{
